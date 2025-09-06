@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="mc.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf</title>
+    <link rel="icon" type="image/x-icon" href="images/leaf.png">
+</head>
+<body>
+    <h1>Minecraft</h1>
+    <h2>Game versions available below.</h2>
+    
+    <div class="back-button-container">
+        <a id="backButton" class="pro-button-back"> Back to main screen. </a>
+        
+    </div>
+    <div class="top-buttons">
+        <a href="leafy/Mc1.12.html" class="pro-button">Minecraft 1.12 </a>
+    </div>
+    </div>
+    <div class="top-buttons">
+        <a href="leafy/Mc.1.9.4.html" class="pro-button">Minecraft 1.9 (1.21 textures)</a>
+    </div>
+    <div class="top-buttons">
+        <a href="leafy/Mc1.8.8.html" class="pro-button">Minecraft 1.8.8</a>
+    </div>
+    <div class="top-buttons">
+      <a href="leafy/Mc1.7.2.html" class="pro-button">Minecraft 1.7.2</a>
+    </div>
+    <div class="top-buttons">
+      <a href="leafy/Mc1.5.2.html" class="pro-button">Minecraft 1.5.2</a>
+    </div>
+    <div class="top-buttons">
+      <a href="leafy/Mc1.3.html" class="pro-button">Minecraft 1.3</a>
+    </div>
+    <div class="top-buttons">
+      <a href="leafy/Mc.1.2.6.html" class="pro-button">Minecraft 1.2.6</a>
+    </div>
+
+    <script>
+        let timeoutID; // Declare timeoutID globally
+    
+        function goBack() {
+            timeoutID = setTimeout(function() {
+                window.location.href = 'leafy.html'; // Change to your desired URL
+            }, 1500);
+        }
+    
+        function stopTimeOut() {
+            clearTimeout(timeoutID); // Clears the timeout when mouse leaves
+        }
+    
+        // Add event listeners
+        document.getElementById('backButton').addEventListener('mouseenter', goBack);
+        document.getElementById('backButton').addEventListener('mouseleave', stopTimeOut);
+    </script>    
+    
+    <script src="js/dirtblockmake.js"></script>
+</body>
+</html>
