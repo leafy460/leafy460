@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf</title>
+    <link rel="shortcut icon" href="images/leaf.png" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Lilita+One&display=swap');
+
+        /* General Body Styles */
+        html, body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #8B4513, #A0522D, #CD853F); /* Gradient brownish background */
+            color: white;
+            text-align: center;
+            overflow: hidden; /* Prevent scrolling */
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Falling Leaves Layers */
+        .falling-leaves-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
+            pointer-events: none; /* Leaves should not interact with the user */
+            z-index: 0; /* Place behind all other content */
+        }
+
+        /* Random Leaf Sizes */
+        .falling-leaves-layer img {
+            position: absolute;
+            width: calc(5vw + 5vw * var(--scale));
+            height: auto;
+            opacity: 0.8; /* Slight transparency for depth */
+        }
+
+        /* Layer 1 Animation (Faster Movement) */
+        .layer1 img {
+            animation: animateLayer1 10s linear infinite;
+        }
+
+        @keyframes animateLayer1 {
+            0% { top: -30%; left: calc(5% + 90% * var(--random-x)); transform: translateX(10px) scale(var(--scale)); opacity: 0; }
+            10% { opacity: 1; } /* Fade in as it enters the screen */
+            50% { transform: translateX(-10px) rotate(45deg); }
+            100% { top: 110%; left: calc(5% + 90% * var(--random-x)); transform: translateX(-10px) scale(var(--scale)) rotate(90deg); opacity: 0; }
+        }
+
+        /* Layer 2 Animation (Faster Movement) */
+        .layer2 img {
+            animation: animateLayer2 8s linear infinite;
+        }
+
+        @keyframes animateLayer2 {
+            0% { top: -30%; left: calc(5% + 90% * var(--random-x)); transform: translateX(20px) scale(var(--scale)); opacity: 0; }
+            10% { opacity: 1; } /* Fade in as it enters the screen */
+            50% { transform: translateX(-20px) rotate(90deg); }
+            100% { top: 110%; left: calc(5% + 90% * var(--random-x)); transform: translateX(-20px) scale(var(--scale)) rotate(180deg); opacity: 0; }
+        }
+
+        /* Layer 3 Animation (Faster Movement) */
+        .layer3 img {
+            animation: animateLayer3 6s linear infinite;
+        }
+
+        @keyframes animateLayer3 {
+            0% { top: -30%; left: calc(5% + 90% * var(--random-x)); transform: translateX(30px) scale(var(--scale)); opacity: 0; }
+            10% { opacity: 1; } /* Fade in as it enters the screen */
+            50% { transform: translateX(-30px) rotate(135deg); }
+            100% { top: 110%; left: calc(5% + 90% * var(--random-x)); transform: translateX(-30px) scale(var(--scale)) rotate(270deg); opacity: 0; }
+        }
+
+        /* Back Button Styles */
+        .back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            z-index: 3;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Iframe Container */
+        .iframe-container {
+            width: 80%;
+            max-width: 800px;
+            height: 500px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Horizontal Bar */
+        .button-bar {
+            width: 100%;
+            margin-top: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 4;
+        }
+
+        .button-bar button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+            z-index: 5;
+        }
+
+        .button-bar button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Icon inside buttons */
+        .button-bar button img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Falling Leaves -->
+    <div class="falling-leaves-layer layer1">
+        <img src="https://randyvz205.github.io/leafs/leaves1.png" alt="Leaf 1" style="--random-x: 0.1; --scale: 0.8;">
+        <img src="https://randyvz205.github.io/leafs/leaves2.png" alt="Leaf 2" style="--random-x: 0.5; --scale: 0.7;">
+        <img src="https://randyvz205.github.io/leafs/leaves3.png" alt="Leaf 3" style="--random-x: 0.9; --scale: 0.6;">
+    </div>
+    <div class="falling-leaves-layer layer2">
+        <img src="https://randyvz205.github.io/leafs/leaves1.png" alt="Leaf 1" style="--random-x: 0.3; --scale: 1;">
+        <img src="https://randyvz205.github.io/leafs/leaves4.png" alt="Leaf 4" style="--random-x: 0.8; --scale: 0.9;">
+        <img src="https://randyvz205.github.io/leafs/leaves2.png" alt="Leaf 2" style="--random-x: 0.6; --scale: 1.1;">
+    </div>
+    <div class="falling-leaves-layer layer3">
+        <img src="https://randyvz205.github.io/leafs/leaves3.png" alt="Leaf 3" style="--random-x: 0.2; --scale: 1.2;">
+        <img src="https://randyvz205.github.io/leafs/leaves1.png" alt="Leaf 1" style="--random-x: 0.7; --scale: 1.4;">
+        <img src="https://randyvz205.github.io/leafs/leaves2.png" alt="Leaf 2" style="--random-x: 0.4; --scale: 1.3;">
+    </div>
+
+    <!-- Back Button -->
+    <button class="back-button" onclick="window.location.href='/leafy.html'">⬅ Back</button>
+
+    <!-- Iframe Container -->
+    <div class="iframe-container" id="iframe-container">
+        <!-- Iframe -->
+        <iframe id="game-iframe" src="/games/tunnel-rush/index.html" tabindex="0"></iframe>
+
+        <!-- Horizontal Bar -->
+        <div id="button-bar" class="button-bar">
+            <!-- Reload Button -->
+            <button title="Reload the page" onclick="window.location.reload()">
+                <img src="https://randyvz205.github.io/images/refresh-svgrepo-com.svg" alt="Reload Icon"> <!-- Replace with your custom reload icon -->
+            </button>
+            <!-- Toggle Animation Button -->
+            <button title="Toggle leaf animation" onclick="toggleLeaves()">
+                <img src="https://randyvz205.github.io/images/hide-svgrepo-com.svg" alt="Toggle Animation Icon"> <!-- Replace with your custom animation icon -->
+            </button>
+            <!-- Fullscreen Button -->
+            <button title="Enter fullscreen mode" onclick="makeIframeFullscreen()">
+                <img src="https://randyvz205.github.io/images/arrow-increase-svgrepo-com.svg" alt="Fullscreen Icon"> <!-- Replace with your custom fullscreen icon -->
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let animationEnabled = true;
+
+        // Toggle Falling Leaves Animation
+        function toggleLeaves() {
+            const layers = document.querySelectorAll('.falling-leaves-layer');
+            animationEnabled = !animationEnabled;
+            layers.forEach(layer => {
+                layer.style.display = animationEnabled ? 'block' : 'none';
+            });
+        }
+
+        // Make Iframe Fullscreen
+        function makeIframeFullscreen() {
+            const iframe = document.getElementById('game-iframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) { /* Firefox */
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) { /* IE/Edge */
+                iframe.msRequestFullscreen();
+            }
+        }
+    </script>
+</body>
+</html>
