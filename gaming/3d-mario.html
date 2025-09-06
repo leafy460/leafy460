@@ -14,7 +14,7 @@
       padding: 0;
       height: 100vh;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); /* Dark teal gradient */
+      background: linear-gradient(135deg, #5a2d0c, #8b3e15, #c56b2d, #e89c3f); /* Autumn warm tones */
       color: white;
       overflow: hidden;
     }
@@ -30,7 +30,7 @@
     .falling-leaves-layer img {
       position: absolute;
       width: calc(5vw + 5vw * var(--scale));
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     .layer1 img { animation: animate1 10s linear infinite; }
@@ -58,19 +58,22 @@
       position: fixed;
       top: 15px;
       left: 15px;
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.15);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255,255,255,0.3);
-      border-radius: 8px;
-      padding: 8px 14px;
-      color: white;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 18px;
       font-weight: 600;
+      color: white;
       cursor: pointer;
       z-index: 5;
-      transition: background 0.3s;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
     }
     .back-button:hover {
-      background: rgba(255,255,255,0.25);
+      background: rgba(255,200,150,0.35);
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 0 15px rgba(255,200,150,0.6);
     }
 
     /* Iframe Container */
@@ -112,16 +115,22 @@
       border-radius: 8px;
       padding: 10px;
       cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
+      transition: transform 0.25s, background 0.3s, box-shadow 0.3s;
     }
     .button-bar button:hover {
-      background: rgba(255,255,255,0.3);
-      transform: scale(1.1);
+      background: rgba(255,140,0,0.25);
+      transform: scale(1.15);
+      box-shadow: 0 0 12px rgba(255,140,0,0.6);
     }
 
     .button-bar button img {
       width: 22px;
       height: 22px;
+      filter: brightness(0) invert(1); /* make icons white */
+      transition: filter 0.3s;
+    }
+    .button-bar button:hover img {
+      filter: drop-shadow(0 0 6px orange);
     }
   </style>
 </head>
