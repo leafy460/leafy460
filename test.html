@@ -25,6 +25,51 @@
       height: 100%;
     }
 
+    /* Falling Leaves Layers */
+    .falling-leaves-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .falling-leaves-layer img {
+      position: absolute;
+      width: calc(5vw + 5vw * var(--scale));
+      height: auto;
+      opacity: 0.8;
+    }
+
+    /* Animations */
+    .layer1 img { animation: animateLayer1 10s linear infinite; }
+    .layer2 img { animation: animateLayer2 8s linear infinite; }
+    .layer3 img { animation: animateLayer3 6s linear infinite; }
+
+    @keyframes animateLayer1 {
+      0% { top: -30%; left: calc(5% + 90% * var(--random-x)); transform: scale(var(--scale)); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: rotate(45deg) scale(var(--scale)); }
+      100% { top: 110%; left: calc(5% + 90% * var(--random-x)); transform: rotate(90deg) scale(var(--scale)); opacity: 0; }
+    }
+
+    @keyframes animateLayer2 {
+      0% { top: -30%; left: calc(5% + 90% * var(--random-x)); transform: scale(var(--scale)); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: rotate(90deg) scale(var(--scale)); }
+      100% { top: 110%; left: calc(5% + 90% * var(--random-x)); transform: rotate(180deg) scale(var(--scale)); opacity: 0; }
+    }
+
+    @keyframes animateLayer3 {
+      0% { top: -30%; left: calc(5% + 90% * var(--random-x)); transform: scale(var(--scale)); opacity: 0; }
+      10% { opacity: 1; }
+      50% { transform: rotate(135deg) scale(var(--scale)); }
+      100% { top: 110%; left: calc(5% + 90% * var(--random-x)); transform: rotate(270deg) scale(var(--scale)); opacity: 0; }
+    }
+
     /* Search Bar */
     .search-bar {
       margin: 40px auto;
@@ -37,24 +82,25 @@
       background: rgba(255, 255, 255, 0.15);
       color: white;
       outline: none;
+      z-index: 2;
+      position: relative;
     }
 
     .search-bar::placeholder {
       color: rgba(255, 255, 255, 0.6);
     }
 
-    /* Game Buttons (Remodeled) */
+    /* Game Buttons */
     .game-button {
       background: rgba(255, 255, 255, 0.08);
       border: 2px solid rgba(255, 255, 255, 0.4);
       border-radius: 15px;
-      padding: 20px 15px;
+      padding: 15px 10px;
       width: 160px;
-      height: 230px;
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       margin: 15px;
       text-decoration: none;
       color: white;
@@ -62,16 +108,16 @@
       font-weight: 600;
       transition: all 0.4s ease;
       position: relative;
-      overflow: hidden;
+      z-index: 2;
     }
 
     .game-button img {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
       object-fit: cover;
       border-radius: 10px;
       transition: transform 0.3s ease;
-      margin-bottom: 12px;
+      margin-bottom: 8px; /* tighter spacing */
     }
 
     .game-button p {
@@ -96,12 +142,12 @@
     .game-button:hover {
       background: rgba(255, 215, 0, 0.2);
       border-color: #FFD700;
-      transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 0 20px #FFD700, 0 0 40px #FFA500;
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 0 15px #FFD700, 0 0 30px #FFA500;
     }
 
     .game-button:hover img {
-      transform: scale(1.1) rotate(2deg);
+      transform: scale(1.05) rotate(1deg);
     }
 
     .game-button:hover::before {
@@ -114,6 +160,8 @@
       margin-top: 20px;
       font-size: 20px;
       color: red;
+      z-index: 2;
+      position: relative;
     }
 
     /* Request Button */
@@ -130,6 +178,7 @@
       color: white;
       text-decoration: none;
       border: 2px solid white;
+      z-index: 2;
     }
 
     .request-btn:hover {
@@ -142,6 +191,23 @@
 </head>
 
 <body>
+  <!-- Falling Leaves -->
+  <div class="falling-leaves-layer layer1">
+    <img src="https://randyvz205.github.io/leafs/leaves1.png" alt="Leaf" style="--random-x:0.1;--scale:0.8;">
+    <img src="https://randyvz205.github.io/leafs/leaves2.png" alt="Leaf" style="--random-x:0.5;--scale:0.7;">
+    <img src="https://randyvz205.github.io/leafs/leaves3.png" alt="Leaf" style="--random-x:0.9;--scale:0.6;">
+  </div>
+  <div class="falling-leaves-layer layer2">
+    <img src="https://randyvz205.github.io/leafs/leaves1.png" alt="Leaf" style="--random-x:0.3;--scale:1;">
+    <img src="https://randyvz205.github.io/leafs/leaves4.png" alt="Leaf" style="--random-x:0.8;--scale:0.9;">
+    <img src="https://randyvz205.github.io/leafs/leaves2.png" alt="Leaf" style="--random-x:0.6;--scale:1.1;">
+  </div>
+  <div class="falling-leaves-layer layer3">
+    <img src="https://randyvz205.github.io/leafs/leaves3.png" alt="Leaf" style="--random-x:0.2;--scale:1.2;">
+    <img src="https://randyvz205.github.io/leafs/leaves1.png" alt="Leaf" style="--random-x:0.7;--scale:1.4;">
+    <img src="https://randyvz205.github.io/leafs/leaves2.png" alt="Leaf" style="--random-x:0.4;--scale:1.3;">
+  </div>
+
   <!-- Search -->
   <div class="search-container">
     <input type="text" id="searchBar" class="search-bar" placeholder="Search for a game..." oninput="filterGames()">
@@ -173,7 +239,6 @@
       <img src="images/tetris.png" alt="Tetris Icon">
       <p>Tetris</p>
     </a>
-    <!-- You can keep adding more games here in the same format -->
   </nav>
 
   <div class="no-results" id="no-results">No results found. Request the game in the form below!</div>
