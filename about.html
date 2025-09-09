@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leaf</title>
-  <link rel="icon" type="image/x-icon" href="images/leaf.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About | Leaf</title>
+  <link rel="icon" type="image/x-icon" href="images/leaf.png"/>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Lilita+One&display=swap');
-
-    /* General Body Styles */
     html, body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -18,253 +14,170 @@
       background: linear-gradient(135deg, #8B4513, #A0522D, #CD853F);
       color: white;
       text-align: center;
-      overflow-y: auto;
+      min-height: 100vh;
       overflow-x: hidden;
       transition: background 0.5s, color 0.5s;
-      user-select: none;
-      height: 100%;
     }
-
-    /* Falling Leaves Layers */
     .falling-leaves-layer {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       overflow: hidden;
       pointer-events: none;
       z-index: 0;
     }
-
     .falling-leaves-layer img {
       position: absolute;
-      width: calc(5vw + 5vw * var(--scale));
-      height: auto;
+      width: calc(4vw + 6vw * var(--scale));
       opacity: 0.8;
     }
-
-    /* Animations */
-    .layer1 img { animation: animateLayer1 10s linear infinite; }
-    .layer2 img { animation: animateLayer2 8s linear infinite; }
-    .layer3 img { animation: animateLayer3 6s linear infinite; }
-
+    .layer1 img { animation: animateLayer1 12s linear infinite; }
+    .layer2 img { animation: animateLayer2 9s linear infinite; }
+    .layer3 img { animation: animateLayer3 7s linear infinite; }
     @keyframes animateLayer1 {
-      0% { top: -30%; left: calc(5% + 90% * var(--random-x)); transform: scale(var(--scale)); opacity: 0; }
-      10% { opacity: 1; }
-      50% { transform: rotate(45deg) scale(var(--scale)); }
-      100% { top: 110%; left: calc(5% + 90% * var(--random-x)); transform: rotate(90deg) scale(var(--scale)); opacity: 0; }
+      0%   { top: -20%; left: calc(10% + 80% * var(--random-x)); opacity: 0; }
+      10%  { opacity: 1; }
+      60%  { transform: rotate(30deg) scale(var(--scale)); }
+      100% { top: 110%; left: calc(10% + 80% * var(--random-x)); opacity: 0; }
     }
-
     @keyframes animateLayer2 {
-      0% { top: -30%; left: calc(5% + 90% * var(--random-x)); transform: scale(var(--scale)); opacity: 0; }
-      10% { opacity: 1; }
-      50% { transform: rotate(90deg) scale(var(--scale)); }
-      100% { top: 110%; left: calc(5% + 90% * var(--random-x)); transform: rotate(180deg) scale(var(--scale)); opacity: 0; }
+      0%   { top: -20%; left: calc(10% + 80% * var(--random-x)); opacity: 0; }
+      10%  { opacity: 1; }
+      60%  { transform: rotate(180deg) scale(var(--scale)); }
+      100% { top: 110%; left: calc(10% + 80% * var(--random-x)); opacity: 0; }
     }
-
     @keyframes animateLayer3 {
-      0% { top: -30%; left: calc(5% + 90% * var(--random-x)); transform: scale(var(--scale)); opacity: 0; }
-      10% { opacity: 1; }
-      50% { transform: rotate(135deg) scale(var(--scale)); }
-      100% { top: 110%; left: calc(5% + 90% * var(--random-x)); transform: rotate(270deg) scale(var(--scale)); opacity: 0; }
+      0%   { top: -20%; left: calc(10% + 80% * var(--random-x)); opacity: 0; }
+      10%  { opacity: 1; }
+      60%  { transform: rotate(360deg) scale(var(--scale)); }
+      100% { top: 110%; left: calc(10% + 80% * var(--random-x)); opacity: 0; }
     }
-
-    /* Search Bar */
-    .search-bar {
-      margin: 40px auto;
-      padding: 15px 20px;
-      width: 90%;
-      max-width: 500px;
-      font-size: 18px;
-      border: 2px solid white;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.15);
-      color: white;
-      outline: none;
-      z-index: 2;
-      position: relative;
-    }
-
-    .search-bar::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    /* Game Buttons */
-    .game-button {
-      background: rgba(255, 255, 255, 0.08);
-      border: 2px solid rgba(255, 255, 255, 0.4);
-      border-radius: 15px;
-      padding: 15px 10px;
-      width: 160px;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 15px;
-      text-decoration: none;
-      color: white;
-      font-size: 16px;
-      font-weight: 600;
-      transition: all 0.4s ease;
+    .about-container {
       position: relative;
       z-index: 2;
+      background: rgba(60, 30, 10, 0.55);
+      margin: 70px auto 0 auto;
+      padding: 40px 28px 32px 28px;
+      max-width: 600px;
+      border-radius: 18px;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.2);
+      backdrop-filter: blur(3px);
+      transition: background 0.5s;
     }
-
-    .game-button img {
-      width: 90px;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-      margin-bottom: 8px; /* tighter spacing */
+    .about-title {
+      font-family: 'Lilita One', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 8px;
+      letter-spacing: 0.07em;
+      color: #FFD700;
+      text-shadow: 0 2px 16px #8B4513, 0 2px 28px #A0522D;
     }
-
-    .game-button p {
-      margin: 0;
-      font-size: 14px;
-      font-weight: bold;
+    .about-description {
+      font-size: 1.13rem;
+      margin-bottom: 18px;
+      line-height: 1.7;
+      color: #fffdeb;
     }
-
-    .game-button::before {
-      content: "";
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,215,0,0.2), transparent 70%);
-      transform: rotate(45deg);
-      opacity: 0;
-      transition: opacity 0.4s ease;
+    .about-list {
+      text-align: left;
+      margin: 0 auto 24px auto;
+      max-width: 440px;
+      padding: 0 16px;
     }
-
-    .game-button:hover {
-      background: rgba(255, 215, 0, 0.2);
-      border-color: #FFD700;
-      transform: translateY(-6px) scale(1.05);
-      box-shadow: 0 0 15px #FFD700, 0 0 30px #FFA500;
+    .about-list li {
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #ffe0a0;
     }
-
-    .game-button:hover img {
-      transform: scale(1.05) rotate(1deg);
+    .creator-section {
+      margin-top: 22px;
+      font-size: 1rem;
+      color: #FFD700;
     }
-
-    .game-button:hover::before {
-      opacity: 1;
-    }
-
-    /* No Results */
-    .no-results {
-      display: none;
+    .social-links {
       margin-top: 20px;
-      font-size: 20px;
-      color: red;
-      z-index: 2;
-      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 22px;
     }
-
-    /* Request Button */
-    .request-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 14px 26px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 16px;
-      color: white;
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: #FFD700;
       text-decoration: none;
-      border: 2px solid white;
-      z-index: 2;
+      transition: color 0.3s;
+      font-size: 1.08rem;
     }
-
-    .request-btn:hover {
+    .social-link:hover {
+      color: #FFA500;
+      text-shadow: 0 0 10px #FFD700;
+    }
+    .back-btn {
+      margin-top: 35px;
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 12px;
+      border: 2px solid #FFD700;
+      background: rgba(255, 255, 255, 0.16);
+      color: #FFD700;
+      font-size: 1.1rem;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 18px #A0522D;
+    }
+    .back-btn:hover {
       background: #FFD700;
-      color: #222;
-      transform: scale(1.1);
-      box-shadow: 0 0 15px #FFD700, 0 0 25px #FFA500;
+      color: #8B4513;
+      box-shadow: 0 0 24px #FFD700, 0 0 36px #FFA500;
     }
   </style>
 </head>
-
 <body>
-  <!-- Falling Leaves -->
+  <!-- Falling Leaves Layers -->
   <div class="falling-leaves-layer layer1">
-    <img src="https://randyvz205.github.io/leafs/leaves1.png" alt="Leaf" style="--random-x:0.1;--scale:0.8;">
-    <img src="https://randyvz205.github.io/leafs/leaves2.png" alt="Leaf" style="--random-x:0.5;--scale:0.7;">
-    <img src="https://randyvz205.github.io/leafs/leaves3.png" alt="Leaf" style="--random-x:0.9;--scale:0.6;">
+    <img src="https://randyvz205.github.io/leafs/leaves1.png" style="--random-x:0.18;--scale:0.8;" alt="Leaf"/>
+    <img src="https://randyvz205.github.io/leafs/leaves2.png" style="--random-x:0.56;--scale:0.7;" alt="Leaf"/>
+    <img src="https://randyvz205.github.io/leafs/leaves3.png" style="--random-x:0.93;--scale:0.8;" alt="Leaf"/>
   </div>
   <div class="falling-leaves-layer layer2">
-    <img src="https://randyvz205.github.io/leafs/leaves1.png" alt="Leaf" style="--random-x:0.3;--scale:1;">
-    <img src="https://randyvz205.github.io/leafs/leaves4.png" alt="Leaf" style="--random-x:0.8;--scale:0.9;">
-    <img src="https://randyvz205.github.io/leafs/leaves2.png" alt="Leaf" style="--random-x:0.6;--scale:1.1;">
+    <img src="https://randyvz205.github.io/leafs/leaves1.png" style="--random-x:0.35;--scale:1.1;" alt="Leaf"/>
+    <img src="https://randyvz205.github.io/leafs/leaves4.png" style="--random-x:0.80;--scale:1.0;" alt="Leaf"/>
+    <img src="https://randyvz205.github.io/leafs/leaves2.png" style="--random-x:0.62;--scale:1.2;" alt="Leaf"/>
   </div>
   <div class="falling-leaves-layer layer3">
-    <img src="https://randyvz205.github.io/leafs/leaves3.png" alt="Leaf" style="--random-x:0.2;--scale:1.2;">
-    <img src="https://randyvz205.github.io/leafs/leaves1.png" alt="Leaf" style="--random-x:0.7;--scale:1.4;">
-    <img src="https://randyvz205.github.io/leafs/leaves2.png" alt="Leaf" style="--random-x:0.4;--scale:1.3;">
+    <img src="https://randyvz205.github.io/leafs/leaves3.png" style="--random-x:0.21;--scale:1.1;" alt="Leaf"/>
+    <img src="https://randyvz205.github.io/leafs/leaves1.png" style="--random-x:0.74;--scale:1.25;" alt="Leaf"/>
+    <img src="https://randyvz205.github.io/leafs/leaves2.png" style="--random-x:0.45;--scale:1.3;" alt="Leaf"/>
   </div>
-
-  <!-- Search -->
-  <div class="search-container">
-    <input type="text" id="searchBar" class="search-bar" placeholder="Search for a game..." oninput="filterGames()">
-  </div>
-
-  <!-- Game Links -->
-  <nav id="game-links">
-    <a href="/gaming/snow.html" class="game-button" data-name="Snow Rider 3D">
-      <img src="images/snow.jpeg" alt="Snow Icon">
-      <p>Snow Rider 3D</p>
-    </a>
-    <a href="/gaming/poly.html" class="game-button" data-name="Poly Track">
-      <img src="/leafy/polytrack-main/images/icon.svg" alt="Poly Track Icon">
-      <p>Poly Track</p>
-    </a>
-    <a href="/gaming/pacman.html" class="game-button" data-name="Pac-Man">
-      <img src="images/pacman.png" alt="Pac-Man Icon">
-      <p>Pac-Man</p>
-    </a>
-    <a href="/gaming/mari0.html" class="game-button" data-name="Mari0 3D">
-      <img src="images/mario.png" alt="Mari0 Icon">
-      <p>Mari0 3D</p>
-    </a>
-    <a href="/gaming/sonic.html" class="game-button" data-name="Sonic">
-      <img src="images/sonic.png" alt="Sonic Icon">
-      <p>Sonic</p>
-    </a>
-    <a href="/gaming/tetris.html" class="game-button" data-name="Tetris">
-      <img src="images/tetris.png" alt="Tetris Icon">
-      <p>Tetris</p>
-    </a>
-  </nav>
-
-  <div class="no-results" id="no-results">No results found. Request the game in the form below!</div>
-
-  <!-- Request Button -->
-  <a href="https://forms.gle/EfkriY8Fyp7gLx9D8" class="request-btn" target="_blank">Request a game</a>
-
-  <script>
-    function filterGames() {
-      const searchQuery = document.getElementById("searchBar").value.toLowerCase().trim();
-      const gameButtons = document.querySelectorAll(".game-button");
-      const noResults = document.getElementById("no-results");
-      let hasResults = false;
-
-      gameButtons.forEach((button) => {
-        const gameName = button.getAttribute("data-name").toLowerCase();
-        if (gameName.includes(searchQuery)) {
-          button.style.display = "inline-flex";
-          hasResults = true;
-        } else {
-          button.style.display = "none";
-        }
-      });
-
-      noResults.style.display = hasResults ? "none" : "block";
-    }
-  </script>
+  <main class="about-container">
+    <div class="about-title">About Leaf</div>
+    <div class="about-description">
+      Welcome to <strong>Leaf</strong>! This site is dedicated to fun, simplicity, and a bit of nostalgia.<br/>
+      Leaf is a hub for classic games .
+    </div>
+    <ul class="about-list">
+      <li>🎮 Play retro & modern games—all in your browser, with no downloads.</li>
+      <li>🍃 Enjoy a unique leaf-themed aesthetic and smooth animations.</li>
+      <li>🔍 Search for your favorite games or request new ones to be added.</li>
+      <li>💡 Built and maintained by <strong>leafy460</strong> (that’s me!).</li>
+      <li>✨ Always evolving—come back for new games & features!</li>
+    </ul>
+    <div class="creator-section">
+      Made by <strong>leafy460</strong>. <br/>
+      Reach out or follow me:
+      <div class="social-links">
+        <a class="social-link" href="https://github.com/leafy460" target="_blank">
+          <img src="images/leaf.png" alt="GitHub" style="width:20px;height:20px;vertical-align:middle;"/> GitHub
+        </a>
+        <a class="social-link" href="mailto:randyvz205@gmail.com">
+          <svg width="20" height="20" fill="#FFD700" style="vertical-align:middle;" viewBox="0 0 24 24"><path d="M2 6.75V17.25C2 18.2165 2.7835 19 3.75 19H20.25C21.2165 19 22 18.2165 22 17.25V6.75C22 5.7835 21.2165 5 20.25 5H3.75C2.7835 5 2 5.7835 2 6.75ZM20.25 6L12 13.0858L3.75 6H20.25ZM20.25 17.25H3.75V8.36421L12 15.1642L20.25 8.36421V17.25Z"/></svg> Email
+        </a>
+      </div>
+    </div>
+    <a href="index.html" class="back-btn">← Back to Home</a>
+  </main>
 </body>
 </html>
